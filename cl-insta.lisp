@@ -15,9 +15,6 @@
   (with-input-from-string (strm text)
     (loop for text = (read-line strm nil nil) while text collect text)))
 
-(defun get-lines-from-stream (stream)
-  (loop for text = (read-line stream nil nil) while text collect text))
-
 (defun get-read-lines (lines &optional (lines-info '()) (line-count 0) (start-string ""))
   (cond
     ((null lines) (reverse lines-info))
@@ -48,16 +45,11 @@
 		    (format nil (if (stringp (second pair)) "\"~A\"" "~A")
 			    (second pair)))) result))
 
-(defun eval-text (text &optional (response-format nil))
+(defun eval-text (text &key (json nil))
   (let ((result (get-eval-lines (get-read-lines (get-lines-from-string text)))))
     (cond
-      ((eq response-format 'json) (cl-json:encode-json (stringify-result result)))
+      (json (cl-json:encode-json (stringify-result result)))
       (t result))))
 
-(defun eval-stream (stream &optional (response-format nil))
-  (let ((result (get-eval-lines (get-read-lines (get-lines-from-stream stream)))))
-    (cond
-      ((eq response-format 'json) (cl-json:encode-json (stringify-result result)))
-      (t result))))
 
 
