@@ -24,7 +24,7 @@
         (:h3 "cl-instathon [use ctrl + enter to eval all code on left]")
 	(:div :id "content"
 	      (:textarea :id "code-pane" :class "pane")
-	      (:textarea :id "result-pane" :class "pane" :disabled "true"))))
+	      (:textarea :id "result-pane" :class "pane result-pane" :disabled "true"))))
 
 (define-easy-handler (eval-code :uri "/eval-code" :default-request-type :post)
     (data)

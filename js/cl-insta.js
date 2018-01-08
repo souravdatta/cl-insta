@@ -1,10 +1,10 @@
 $(document).ready(function () {
     $('#code-pane').keypress(function (e) {
-	var key = e.key;
+	var keyCode = e.keyCode;
 	var ctrlKey = e.ctrlKey;
 	var code_data = '';
 	
-	if (ctrlKey && (key == "Enter")) {
+	if (ctrlKey && ((keyCode == 10) || (keyCode == 13))) {
 	    code_data = $('#code-pane').val();
 	    
 	    $.ajax({
@@ -15,15 +15,14 @@ $(document).ready(function () {
 		success: function (result) {
 		    var line = 0, start_line = 1;
 		    var result_data = '';
-		    
-		    console.log(result);
+		  
 		    result_data = '';
 		    for (line in result) {
+			line = parseInt(line);
 			while (start_line < line) {
-			    result_data += '\n';
+			    result_data += String.fromCharCode(10, 13);
 			    start_line++;
 			}
-
 			result_data += result[line];
 			start_line = line;
 		    }
