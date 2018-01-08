@@ -3,7 +3,7 @@
 ;;;; Copyright (c) 2018 Sourav Datta
 
 (defpackage #:cl-insta
-  (:use #:cl)
-  (:export #:eval-text))
+  (:use #:cl #:cl-who #:hunchentoot #:parenscript)
+  (:export #:eval-text #:start-server))
 
 

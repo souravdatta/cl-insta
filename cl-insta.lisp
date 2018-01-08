@@ -2,7 +2,7 @@
 ;;;;
 ;;;; Copyright (c) 2018 Sourav Datta
 
-(in-package #:cl-insta)
+(in-package :cl-insta)
 
 ;;; "cl-insta" goes here. Hacks and glory await!
 
@@ -48,8 +48,8 @@
 (defun eval-text (text &key (json nil))
   (let ((result (get-eval-lines (get-read-lines (get-lines-from-string text)))))
     (cond
-      (json (cl-json:encode-json (stringify-result result)))
-      (t result))))
+      (json (cl-json:encode-json-to-string (stringify-result result)))
+      (t (stringify-result result)))))
 
 
 
