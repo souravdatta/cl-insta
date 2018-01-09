@@ -1,3 +1,12 @@
+function escapeHTML(string)
+{
+    var pre = document.createElement('pre');
+    var text = document.createTextNode( string );
+    pre.appendChild(text);
+    return pre.innerHTML;
+}
+
+
 $(document).ready(function () {
     $('#code-pane').keypress(function (e) {
 	var keyCode = e.keyCode;
@@ -21,14 +30,14 @@ $(document).ready(function () {
 			line = parseInt(line);
 
 			while (start_line < line) {
-			    result_data += '\n';
+			    result_data += '<br/>';
 			    start_line++;
 			}
-			result_data += result[line];
+			result_data += escapeHTML(result[line]);
 			start_line = line;
 		    }
 
-		    $('#result-pane').text(result_data);
+		    $('#result-pane').html(result_data);
 		}
 	    });
 	}
