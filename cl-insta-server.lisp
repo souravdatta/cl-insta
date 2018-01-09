@@ -32,6 +32,13 @@
        (:script :type "text/javascript"
 		:src "/js/jquery-3.2.1.min.js")
        (:script :type "text/javascript"
+		:src "/js/lib/codemirror.js")
+       (:link :type "text/css"
+	      :rel "stylesheet"
+	      :href "/js/lib/codemirror.css")
+       (:script :type "text/javascript"
+		:src "/js/mode/commonlisp/commonlisp.js")
+       (:script :type "text/javascript"
 		:src "/js/cl-insta.js"))
       (:body
        ,@body))))
@@ -41,7 +48,7 @@
       (:h2 "Instant Common Lisp")
       (:h5 "[ctrl + enter to evaluate code on left]")
       (:div :id "content"
-	    (:textarea :id "code-pane" :class "pane code-pane")
+	    (:div :id "code-pane" :class "pane code-pane" :spellcheck "false")
 	    (:div :id "result-pane" :class "pane result-pane" :disabled "true"))))
 
 (define-easy-handler (eval-code :uri "/eval-code" :default-request-type :post)

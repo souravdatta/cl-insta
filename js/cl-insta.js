@@ -8,13 +8,17 @@ function escapeHTML(string)
 
 
 $(document).ready(function () {
+    var myCodeMirror = CodeMirror(document.getElementById('code-pane'));
+    console.log(myCodeMirror);
+    
     $('#code-pane').keypress(function (e) {
 	var keyCode = e.keyCode;
 	var ctrlKey = e.ctrlKey;
 	var code_data = '';
 	
 	if (ctrlKey && ((keyCode == 10) || (keyCode == 13))) {
-	    code_data = $('#code-pane').val();
+	    code_data = myCodeMirror.getValue();
+	    console.log(code_data);
 	    
 	    $.ajax({
 		type: 'POST',
