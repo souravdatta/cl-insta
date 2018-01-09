@@ -1,8 +1,25 @@
 (in-package :cl-insta)
+
+(defparameter *cl-insta-root* nil)
+
+(define-condition unknown-document-root-error (error)
+  ())
+
 (defun start-server (&key (port 8082))
-  (start (make-instance 'easy-acceptor
-			:port port
-			:document-root (truename "."))))
+  (restart-case
+      (if (not *cl-insta-root*)
+	  (error 'unknown-document-root-error)
+	  (start (make-instance 'easy-acceptor
+				:port port
+				:document-root (truename *cl-insta-root*))))
+    (use-value (v)
+      :report "Specify cl-insta location in absolute path"
+      :interactive (lambda () (list (read-line)))
+      (progn
+	(setf *cl-insta-root* v)
+	(start-server :port port)))
+    (show-error ()
+      (format t "Please set cl-insta:*cl-insta-root* to the absolute path where you have installed this package.~%Typically this would be ~~/quicklisp/local-projects/cl-insta.~%"))))
 
 (defmacro page (&body body)
   `(with-html-output (*standard-output*)
@@ -21,10 +38,11 @@
 
 (define-easy-handler (index :uri "/") ()
     (page
-        (:h3 "cl-instathon [use ctrl + enter to eval all code on left]")
-	(:div :id "content"
-	      (:textarea :id "code-pane" :class "pane")
-	      (:textarea :id "result-pane" :class "pane result-pane" :disabled "true"))))
+      (:h2 "(cl-insta)")
+      (:h3 "[Ctrl + Enter to evaluate code on left]")
+      (:div :id "content"
+	    (:textarea :id "code-pane" :class "pane")
+	    (:div :id "result-pane" :class "pane result-pane" :disabled "true"))))
 
 (define-easy-handler (eval-code :uri "/eval-code" :default-request-type :post)
     (data)

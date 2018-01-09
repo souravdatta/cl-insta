@@ -4,6 +4,6 @@
 
 (defpackage #:cl-insta
   (:use #:cl #:cl-who #:hunchentoot #:parenscript)
-  (:export #:eval-text #:start-server))
+  (:export #:eval-text #:start-server *cl-insta-root*))
 
 

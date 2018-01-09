@@ -19,15 +19,16 @@ $(document).ready(function () {
 		    result_data = '';
 		    for (line in result) {
 			line = parseInt(line);
+
 			while (start_line < line) {
-			    result_data += String.fromCharCode(10, 13);
+			    result_data += '\n';
 			    start_line++;
 			}
 			result_data += result[line];
 			start_line = line;
 		    }
 
-		    $('#result-pane').val(result_data);
+		    $('#result-pane').text(result_data);
 		}
 	    });
 	}
