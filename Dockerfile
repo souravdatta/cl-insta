@@ -1,12 +1,5 @@
 FROM ubuntu
 
-# build variables
-
-ARG SBCL_VERSION 
-ARG SBCL_URL=https://prdownloads.sourceforge.net/sbcl/sbcl-2.0.7-source.tar.bz2
-ARG QUICKLISP_VERSION
-ARG QUICKLISP_URL=http://beta.quicklisp.org/dist/quicklisp/2020-01-04/distinfo.txt
-
 RUN apt-get update && \
     apt-get install -y build-essential && \
     apt-get install -y curl \
