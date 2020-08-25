@@ -1,5 +1,5 @@
 body {
-    background-color: #F8F8F8;
+    background-color: #ECECEA;
 }
 
 h2, h5 {
@@ -40,13 +40,14 @@ h2, h5 {
 
 .result-pane {
     width: 28%;
-    background-color: #ECECEA;
+    background-color: #ffffff;
     white-space: nowrap;
     overflow-x: scroll;
     border: 0px solid black;
     color: #0080ff;
-    padding-left: 8px;
     font-size: 15px;
+    padding: 8px;
+    margin: 2px;
 }
 
 
