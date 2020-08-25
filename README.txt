@@ -11,3 +11,9 @@ Usage:
 (cl-insta:eval-text text) === Returns the result mapping in an associated list.
 (cl-insta:eval-text text 'json) === Returns the result in JSON format.
 
+cl-insta web
+================
+
+There is a web ui that can be used to run Lisp code using above evaluator function online and get the results next to it.
+See simple_server_example.lisp to setup your local server. To experiment without setting up locally
+Run docker run -it -p <your machine port>:3000 souravdatta/cl-insta
