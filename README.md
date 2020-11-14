@@ -12,6 +12,9 @@ Run `docker run -it -p <your machine port>:3000 souravdatta/cl-insta`
 (cl-insta:start-server :port 3000)
 ```
 
+The UI is very basic and may need to adjust the zoom settings of the browser to see the code and result side by side.
+
+![CL-INSTA in action](https://github.com/souravdatta/cl-insta/blob/master/cl-insta-screenshot.png)
 
 #### CL-INSTA Core
 
